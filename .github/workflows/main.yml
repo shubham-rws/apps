@@ -14,11 +14,11 @@ jobs:
     #needs: [Build]
     runs-on: dev-runner
     steps:
-      #- uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Deploy
         run: |
-          git config --global user.email "shubham.sharma@rws.com"
-          git pull origin main
+          #git config --global user.email "shubham.sharma@rws.com"
+          #git pull origin main
     
   DeployQA:
     name: Deploy to QA 
@@ -26,8 +26,8 @@ jobs:
     needs: [DeployDev]
     runs-on: qa-runner
     steps:
-      #- uses: actions/checkout@v2    
+      - uses: actions/checkout@v2    
       - name: Deploy
         run: |
-          git config --global user.email "shubham.sharma@rws.com"
-          git pull origin main
+          #git config --global user.email "shubham.sharma@rws.com"
+          #git pull origin main
