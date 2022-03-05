@@ -19,6 +19,7 @@ jobs:
         env:
           ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
         run: |
+          git config --global user.name "shubham-rws"
           git pull https://${{secrets.ACCESS_TOKEN}}@github.com/shubham-rws/apps.git
     
   DeployQA:
@@ -32,4 +33,5 @@ jobs:
         env:
           ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
         run: |
+          git config --global user.name "shubham-rws"
           git pull https://${{secrets.ACCESS_TOKEN}}@github.com/shubham-rws/apps.git
