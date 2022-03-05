@@ -19,8 +19,8 @@ jobs:
         env:
           ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
         run: |
-          echo ${{secrets.ACCESS_TOKEN}}
-          git pull https://shubham-rws:${{secrets.ACCESS_TOKEN}}@github.com/shubham-rws/apps.git
+          echo ${{secrets.DEPLOYMENT}}
+          git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
     
   DeployQA:
     name: Deploy to QA 
@@ -33,4 +33,4 @@ jobs:
         env:
           ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
         run: |
-          git pull https://shubham-rws:${{secrets.ACCESS_TOKEN}}@github.com/shubham-rws/apps.git
+          git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
