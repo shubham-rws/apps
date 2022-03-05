@@ -12,7 +12,7 @@ jobs:
     name: Deploy to Dev 
     #if: github.event_name == 'pull_request'
     #needs: [Build]
-    runs-on: test-runner-ec2-user
+    runs-on: dev-runner
     steps:
       - uses: actions/checkout@v2
       - name: Deploy
@@ -22,7 +22,7 @@ jobs:
     name: Deploy to QA 
     #if: github.event.ref == 'refs/heads/main'
     needs: [DeployDev]
-    runs-on: test-runner-ec2-user
+    runs-on: dev-runner
     steps:
       - uses: actions/checkout@v2    
       - name: Deploy
