@@ -16,7 +16,9 @@ jobs:
     steps:
       #- uses: actions/checkout@v2
       - name: Deploy
-        run: git pull origin main
+        run: |
+          git config --global user.email "shubham.sharma@rws.com"
+          git pull origin main
     
   DeployQA:
     name: Deploy to QA 
@@ -26,4 +28,6 @@ jobs:
     steps:
       #- uses: actions/checkout@v2    
       - name: Deploy
-        run: git pull origin main
+        run: |
+          git config --global user.email "shubham.sharma@rws.com"
+          git pull origin main
