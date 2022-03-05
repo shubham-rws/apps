@@ -20,7 +20,7 @@ jobs:
           ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
         run: |
           git config --global user.name "shubham-rws"
-          git pull https://${{secrets.ACCESS_TOKEN}}@github.com/shubham-rws/apps.git
+          git pull https://shubham-rws:${{secrets.ACCESS_TOKEN}}@github.com/shubham-rws/apps.git
     
   DeployQA:
     name: Deploy to QA 
@@ -34,4 +34,4 @@ jobs:
           ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
         run: |
           git config --global user.name "shubham-rws"
-          git pull https://${{secrets.ACCESS_TOKEN}}@github.com/shubham-rws/apps.git
+          git pull https://shubham-rws:${{secrets.ACCESS_TOKEN}}@github.com/shubham-rws/apps.git
