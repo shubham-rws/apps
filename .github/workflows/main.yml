@@ -45,7 +45,7 @@ jobs:
       - name: Deploy
         env:
           ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
-          ASGKEY: '${{ secrets.ASGKEY }}'
+          #ASGKEY: '${{ secrets.ASGKEY }}'
         run: |
           git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
           echo '${{ secrets.ASGKEY }}' > /data/websites/ASGKEY.pem && chmod 400 /data/websites/ASGKEY.pem
