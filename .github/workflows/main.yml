@@ -34,3 +34,16 @@ jobs:
           ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
         run: |
           git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
+    
+  DeployPROD:
+    name: Deploy to PROD 
+    #if: github.event.ref == 'refs/heads/main'
+    needs: [DeployDev]
+    runs-on: prod-runner
+    steps:
+      #- uses: actions/checkout@v2
+      - name: Deploy
+        env:
+          ACCESS_TOKEN: '${{ secrets.DEPLOYMENT }}'
+        run: |
+          git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
