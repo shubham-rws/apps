@@ -38,7 +38,7 @@ jobs:
   DeployPROD:
     name: Deploy to PROD 
     #if: github.event.ref == 'refs/heads/main'
-    needs: [DeployDev]
+    needs: [DeployQA]
     runs-on: prod-runner
     steps:
       - uses: actions/checkout@v2
