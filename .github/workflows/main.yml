@@ -48,7 +48,7 @@ jobs:
           #ASGKEY: '${{ secrets.ASGKEY }}'
         run: |
           git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
-          echo '${{ secrets.ASGKEY }}' > /data/websites/ASGKEY.pem && chmod 400 /data/websites/ASGKEY.pem
+          echo '${{ secrets.ASGKEY }}' > /data/websites/ASGKEY.pem && chmod 755 /data/websites/ASGKEY.pem
           INSTANCE_IDS=$(aws autoscaling describe-auto-scaling-groups --region us-east-2 --auto-scaling-group-names prod-runner-from-dev-stage-cicd | jq --raw-output '.AutoScalingGroups[0].Instances | map(.InstanceId) | join(";")')
           export IFS=";"
           for instance_id in $INSTANCE_IDS; do \
