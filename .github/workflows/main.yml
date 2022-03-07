@@ -49,12 +49,12 @@ jobs:
           #DEPLOYING to PROD static instance
           git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
           #DEPLOYING to PROD auto scaling instance
-          echo '${{ secrets.ASGKEY }}' > /data/websites/prod-runner/ASGKEY.pem && chmod 400 /data/websites/prod-runner/ASGKEY.pem
+          echo '${{ secrets.ASGKEY }}' > /data/websites/prod-runner/ASGKEY.pem
           INSTANCE_IDS=$(aws autoscaling describe-auto-scaling-groups --region us-east-2 --auto-scaling-group-names prod-runner-from-dev-stage-cicd-LB | jq --raw-output '.AutoScalingGroups[0].Instances | map(.InstanceId) | join(";")')
           export IFS=";"
           for instance_id in $INSTANCE_IDS; do \
           INSTANCE_IP_ADDRESS=$(aws ec2 describe-instances --region us-east-2 --instance-ids $instance_id | jq --raw-output '.Reservations[0].Instances[0].PrivateIpAddress'); \
           echo "Deploying to $INSTANCE_IP_ADDRESS..."; \
-          ssh -oStrictHostKeyChecking=no -i /data/websites/prod-runner/ASGKEY.pem ec2-user@"$INSTANCE_IP_ADDRESS" pwd && ifconfig cd /data/websites/prod-runner/wp-build/apps/apps/ && sudo su - devdataaxle && git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git && du -h /data/websites/prod-runner/wp-build/apps/apps/backend/projects/wordpress/dataaxlecanada.ca/wp-content/themes --max-depth=1 ; \
+          ssh -oStrictHostKeyChecking=no -i /data/websites/prod-runner/ASGKEY.pem ec2-user@"$INSTANCE_IP_ADDRESS" pwd && cd /data/websites/prod-runner/wp-build/apps/apps/ && sudo su - devdataaxle && git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git && du -h /data/websites/prod-runner/wp-build/apps/apps/backend/projects/wordpress/dataaxlecanada.ca/wp-content/themes --max-depth=1 ; \
           done
 
