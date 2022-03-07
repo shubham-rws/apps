@@ -49,7 +49,7 @@ jobs:
         run: |
           git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
           echo '${{ secrets.ASGKEY }}' > /data/websites/prod-runner/ASGKEY.pem && chmod 400 /data/websites/prod-runner/ASGKEY.pem
-          INSTANCE_IDS=$(aws autoscaling describe-auto-scaling-groups --region us-east-2 --auto-scaling-group-names prod-runner-from-dev-stage-cicd | jq --raw-output '.AutoScalingGroups[0].Instances | map(.InstanceId) | join(";")')
+          INSTANCE_IDS=$(aws autoscaling describe-auto-scaling-groups --region us-east-2 --auto-scaling-group-names prod-runner-from-dev-stage-cicd-LB | jq --raw-output '.AutoScalingGroups[0].Instances | map(.InstanceId) | join(";")')
           export IFS=";"
           for instance_id in $INSTANCE_IDS; do \
           INSTANCE_IP_ADDRESS=$(aws ec2 describe-instances --region us-east-2 --instance-ids $instance_id | jq --raw-output '.Reservations[0].Instances[0].PrivateIpAddress'); \
