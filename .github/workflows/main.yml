@@ -13,6 +13,8 @@ jobs:
     #if: github.event_name == 'pull_request'
     #needs: [Build]
     runs-on: dev-runner
+    environment: 
+      name: DEV
     steps:
       #- uses: actions/checkout@v2
       - name: Deploy
@@ -27,6 +29,8 @@ jobs:
     #if: github.event.ref == 'refs/heads/main'
     needs: [DeployDev]
     runs-on: qa-runner
+    environment: 
+      name: QA    
     steps:
       #- uses: actions/checkout@v2
       - name: Deploy
@@ -39,6 +43,8 @@ jobs:
     #if: github.event.ref == 'refs/heads/main'
     needs: [DeployQA]
     runs-on: prod-runner
+    environment: 
+      name: PROD    
     steps:
       #- uses: actions/checkout@v2
       - name: Deploy
