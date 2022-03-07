@@ -56,3 +56,4 @@ jobs:
           echo "Deploying to $INSTANCE_IP_ADDRESS..."; \
           ssh -oStrictHostKeyChecking=no -i /data/websites/prod-runner/ASGKEY.pem ec2-user@"$INSTANCE_IP_ADDRESS" pwd && ifconfig cd /data/websites/prod-runner/wp-build/apps/apps/ && sudo su - devdataaxle && git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git && ls -ltr /data/websites/prod-runner/wp-build/apps/apps/backend/projects/wordpress/dataaxlecanada.ca/wp-content ; \
           done
+
