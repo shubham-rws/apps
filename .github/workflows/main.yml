@@ -61,6 +61,6 @@ jobs:
           for instance_id in $INSTANCE_IDS; do \
           INSTANCE_IP_ADDRESS=$(aws ec2 describe-instances --region us-east-2 --instance-ids $instance_id | jq --raw-output '.Reservations[0].Instances[0].PrivateIpAddress'); \
           echo "Deploying to $INSTANCE_IP_ADDRESS..."; \
-          ssh -oStrictHostKeyChecking=no -i /data/websites/prod-runner/ASGKEY.pem ec2-user@"$INSTANCE_IP_ADDRESS" pwd && sudo su - devdataaxle && cd /data/websites/prod-runner/wp-build/apps/apps/ && git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git ; \
+          #ssh -oStrictHostKeyChecking=no -i /data/websites/prod-runner/ASGKEY.pem ec2-user@"$INSTANCE_IP_ADDRESS" pwd && sudo su - devdataaxle && cd /data/websites/prod-runner/wp-build/apps/apps/ && git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git ; \
           done
 
