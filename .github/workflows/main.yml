@@ -57,7 +57,7 @@ jobs:
           #DEPLOYING to PROD auto scaling instance
           pwd
           whoami
-          echo '${{ secrets.ASGKEY }}' > ASGKEY.pem && chmod 400 ASGKEY.pem
+          echo '${{ secrets.ASGKEY }}' > ASGKEY.pem && sudo chmod 400 ASGKEY.pem
           INSTANCE_IDS=$(aws autoscaling describe-auto-scaling-groups --region us-east-2 --auto-scaling-group-names prod-runner-from-dev-stage-cicd-LB | jq --raw-output '.AutoScalingGroups[0].Instances | map(.InstanceId) | join(";")')
           export IFS=";"
           for instance_id in $INSTANCE_IDS; do \
