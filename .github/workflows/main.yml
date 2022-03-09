@@ -55,6 +55,7 @@ jobs:
           #DEPLOYING to PROD static instance
           git pull https://shubham-rws:${{secrets.DEPLOYMENT}}@github.com/shubham-rws/apps.git
           #DEPLOYING to PROD auto scaling instance
+          pwd
           echo '${{ secrets.ASGKEY }}' > /data/websites/prod-runner/ASGKEY.pem && chmod 400 /data/websites/prod-runner/ASGKEY.pem
           INSTANCE_IDS=$(aws autoscaling describe-auto-scaling-groups --region us-east-2 --auto-scaling-group-names prod-runner-from-dev-stage-cicd-LB | jq --raw-output '.AutoScalingGroups[0].Instances | map(.InstanceId) | join(";")')
           export IFS=";"
